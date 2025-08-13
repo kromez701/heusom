@@ -5322,20 +5322,19 @@ await import("//heusom.com/cdn/shopifycloud/shop-js/modules/v2/chunk.modal_BhWf-
 
 <script>
 
-  document.addEventListener("DOMContentLoaded", function() {
-    const priceListContainer = documtn.querySelector(".sc-keuZit iCrqXV pf-28_ pf-text-1")
-    console.log("priceListContainer", priceListContainer)
-    const priceList = document.querySelector(".sc-jwWawS eLwftX pf-29_ pf-text-1")
-  const priceListCompare = document.querySelector(".sc-jwWawS eLwftX pf-30_ pf-text-1")
-  console.log("priceList", priceList)
-  console.log("priceListCompare", priceListCompare)
-  if (priceList){
-    priceList.textContent = "£44.99"
-  }
-  if (priceListCompare){
-    priceListCompare.textContent = "£69.99"
-  };
-  });
+  document.addEventListener('DOMContentLoaded', function() {
+    // Change first div (current price) to 49.99 zł
+    const currentPriceDiv = document.querySelector('div[data-product-type="price"][data-product-id="7196399304791"]');
+    if (currentPriceDiv) {
+        currentPriceDiv.textContent = '49,99 zł';
+    }
+    
+    // Change second div (compare at price) to 69.99 zł
+    const comparePriceDiv = document.querySelector('div[data-product-type="compare_at_price"][data-product-id="7196399304791"]');
+    if (comparePriceDiv) {
+        comparePriceDiv.textContent = '69,99 zł';
+    }
+});
 
 
   //add to cart button redirect
