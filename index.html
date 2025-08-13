@@ -5338,18 +5338,44 @@ await import("//heusom.com/cdn/shopifycloud/shop-js/modules/v2/chunk.modal_BhWf-
         });
     }
 
-     // Change first div (current price) to 49.99 zł
-    const currentPriceDiv = document.querySelector('div[data-product-type="price"][data-product-id="7196399304791"]');
-    console.log("current", currentPriceDiv);
-    if (currentPriceDiv) {
-        currentPriceDiv.textContent = '£49.99 zł';
+     const TARGET_CURRENT_PRICE = '£49.99';
+    const TARGET_COMPARE_PRICE = '£69.99';
+    
+    function updatePrices() {
+        // Change first div (current price) to 49.99 zł
+        const currentPriceDiv = document.querySelector('div[data-product-type="price"][data-product-id="7196399304791"]');
+        if (currentPriceDiv && currentPriceDiv.textContent !== TARGET_CURRENT_PRICE) {
+            currentPriceDiv.textContent = TARGET_CURRENT_PRICE;
+        }
+        
+        // Change second div (compare at price) to 69.99 zł
+        const comparePriceDiv = document.querySelector('div[data-product-type="compare_at_price"][data-product-id="7196399304791"]');
+        if (comparePriceDiv && comparePriceDiv.textContent !== TARGET_COMPARE_PRICE) {
+            comparePriceDiv.textContent = TARGET_COMPARE_PRICE;
+        }
     }
     
-    // Change second div (compare at price) to 69.99 zł
-    const comparePriceDiv = document.querySelector('div[data-product-type="compare_at_price"][data-product-id="7196399304791"]');
-    if (comparePriceDiv) {
-        comparePriceDiv.textContent = '£69.99 zł';
-    }
+    // Initial price update
+    updatePrices();
+    
+    // Set up observer to watch for changes and reapply our prices
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'childList' || mutation.type === 'characterData') {
+                updatePrices();
+            }
+        });
+    });
+    
+    // Start observing the document for changes
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        characterData: true
+    });
+    
+    // Also run the update function periodically as backup
+    setInterval(updatePrices, 500);
 });
   
   
