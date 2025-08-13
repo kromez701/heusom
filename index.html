@@ -5322,20 +5322,6 @@ await import("//heusom.com/cdn/shopifycloud/shop-js/modules/v2/chunk.modal_BhWf-
 
 <script>
 
-  document.addEventListener('DOMContentLoaded', function() {
-    // Change first div (current price) to 49.99 zł
-    const currentPriceDiv = document.querySelector('div[data-product-type="price"][data-product-id="7196399304791"]');
-    if (currentPriceDiv) {
-        currentPriceDiv.textContent = '49,99 zł';
-    }
-    
-    // Change second div (compare at price) to 69.99 zł
-    const comparePriceDiv = document.querySelector('div[data-product-type="compare_at_price"][data-product-id="7196399304791"]');
-    if (comparePriceDiv) {
-        comparePriceDiv.textContent = '69,99 zł';
-    }
-});
-
 
   //add to cart button redirect
   document.addEventListener('DOMContentLoaded', function() {
@@ -5350,6 +5336,19 @@ await import("//heusom.com/cdn/shopifycloud/shop-js/modules/v2/chunk.modal_BhWf-
             
             window.location.href = redirectUrl;
         });
+    }
+
+     // Change first div (current price) to 49.99 zł
+    const currentPriceDiv = document.querySelector('div[data-product-type="price"][data-product-id="7196399304791"]');
+    console.log("current", currentPriceDiv);
+    if (currentPriceDiv) {
+        currentPriceDiv.textContent = '£49.99 zł';
+    }
+    
+    // Change second div (compare at price) to 69.99 zł
+    const comparePriceDiv = document.querySelector('div[data-product-type="compare_at_price"][data-product-id="7196399304791"]');
+    if (comparePriceDiv) {
+        comparePriceDiv.textContent = '£69.99 zł';
     }
 });
   
